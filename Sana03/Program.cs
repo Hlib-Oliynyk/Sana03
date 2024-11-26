@@ -1,31 +1,41 @@
-﻿using System.Text;
+﻿using System;
+using System.Text;
 
 Console.InputEncoding = Encoding.Unicode;
 Console.OutputEncoding = Encoding.Unicode;
 
-double[] arr = { -3.5, 3.1, -7.2, 4.2, -1.8, 3.6, -6.8 };
-double sum_neg = 0;
-double min = arr[0];
-int maxi = 0;
-double max_abs = Math.Abs(arr[0]);
-int sum_index = 0;
-int count = 0;
+Console.WriteLine("Кількість елементів в масиві: ");
+int n = int.Parse(Console.ReadLine());
 
-for (int i = 0; i < arr.Length; i++)
+double[] arr = new double[n];
+Console.WriteLine("Введіть елементи масиву:");
+for (int i = 0; i < n; i++)
 {
-    double num = arr[i];
-
-    if (num < 0) sum_neg += num;
-    if (num < min) min = num;
-    if (num > arr[maxi]) maxi = i;
-    if (Math.Abs(num) > max_abs) max_abs = Math.Abs(num);
-    if (num > 0) sum_index += i;
-    if (num == Math.Floor(num)) count++;
+    Console.Write($"Елемент {i + 1}: ");
+    arr[i] = double.Parse(Console.ReadLine());
 }
 
-Console.WriteLine($"Сума від'ємних: {sum_neg}");
+double sumNeg = 0;
+double min = arr[0];
+int maxIndex = 0;
+double maxAbs = Math.Abs(arr[0]);
+int sumIndexes = 0;
+int countInt = 0;
+
+for (int i = 0; i < n; i++)
+{
+    if (arr[i] < 0) sumNeg += arr[i];
+    if (arr[i] < min) min = arr[i];
+    if (arr[i] > arr[maxIndex]) maxIndex = i;
+    if (Math.Abs(arr[i]) > maxAbs) maxAbs = Math.Abs(arr[i]);
+    if (arr[i] > 0) sumIndexes += i;
+    if (arr[i] == Math.Floor(arr[i])) countInt++;
+}
+
+Console.WriteLine("\nРезультати:");
+Console.WriteLine($"Сума від'ємних: {sumNeg}");
 Console.WriteLine($"Мінімальний елемент: {min}");
-Console.WriteLine($"Індекс максимального: {maxi}");
-Console.WriteLine($"Максимальний за модулем: {max_abs}");
-Console.WriteLine($"Сума індексів додатних: {sum_index}");
-Console.WriteLine($"Кількість цілих чисел: {count}");
+Console.WriteLine($"Індекс максимального елемента: {maxIndex}");
+Console.WriteLine($"Максимальний за модулем: {maxAbs}");
+Console.WriteLine($"Сума індексів додатних: {sumIndexes}");
+Console.WriteLine($"Кількість цілих чисел: {countInt}");
